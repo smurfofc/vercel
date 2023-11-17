@@ -78,10 +78,7 @@ import execa from 'execa';
 // @ts-ignore
 import dJSON from 'dirty-json';
 
-const openai = new OpenAI({
-  apiKey: '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',
-  organization: 'org-XdKhgC8CSNQb51t5ZhzqQgFG',
-});
+const openai = new OpenAI({});
 
 export default async (client: Client): Promise<number> => {
   const { output } = client;
@@ -178,6 +175,10 @@ export default async (client: Client): Promise<number> => {
 
   let { path: cwd } = pathValidation;
   const autoConfirm = argv['--yes'];
+
+  if (argv['--ai']) {
+    output.log(`🔮 This deployment is powered by AI\n`);
+  }
 
   // deprecate --name
   if (argv['--name']) {
